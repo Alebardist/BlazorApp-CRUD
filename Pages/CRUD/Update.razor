@@ -1,0 +1,55 @@
+﻿@page "/Update"
+@using ServerDataBase;
+
+<h3>Update</h3>
+
+<div>
+    <div>
+        <div class="Input-field-header">
+            Article name
+        </div>
+        <input type="text" name="field-name" @bind-value="_articleUpdated.Name" />
+    </div>
+    <div>
+        <div class="Input-field-header">
+            Field to change
+        </div>
+
+        <EditForm Model="@_articleUpdated">
+            <InputSelect @bind-Value="_articleUpdated.FieldToChange">
+                <option selected>Name</option>
+                <option>Text</option>
+                <option>Likes</option>
+                <option>Dislikes</option>
+            </InputSelect>
+        </EditForm>
+
+    </div>
+    <div>
+        <div class="Input-field-header">
+            Value
+        </div>
+        <input type="text" name="value" @bind-value="_articleUpdated.Value" />
+    </div>
+
+    <input type="button" name="name" value="Update" @onclick="UpdateField" />
+
+</div>
+
+
+@code {
+    private class UpdatedArticle
+    {
+        public string Name { get; set; }
+        public string FieldToChange { get; set; }
+        public string Value { get; set; }
+    }
+
+    private UpdatedArticle _articleUpdated { get; set; } = new UpdatedArticle();
+
+    private void UpdateField()
+    {
+        new DataBaseCRUD().Update<Article>(_articleUpdated.Name, _articleUpdated.FieldToChange, _articleUpdated.Value);
+    }
+
+}

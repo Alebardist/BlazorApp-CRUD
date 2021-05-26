@@ -1,0 +1,46 @@
+﻿@page "/Create"
+@using ServerDataBase;
+
+<h4>
+    Create page
+</h4>
+
+<div>
+    <div>
+        <div class="Input-field-header">
+            Name
+        </div>
+        <input type="text" name="Name" @bind-value="@_articleToAdd.Name" />
+    </div>
+    <div>
+        <div class="Input-field-header">
+            Text
+        </div>
+        <input type="text" name="Text" @bind-value="@_articleToAdd.Text" />
+
+    </div>
+    <div>
+        <div class="Input-field-header">
+            Likes
+        </div>
+        <input type="text" name="Likes" @bind-value="@_articleToAdd.Likes" />
+
+    </div>
+    <div>
+        <div class="Input-field-header">
+            Dislikes
+        </div>
+        <input type="text" name="Dislikes" @bind-value="@_articleToAdd.Dislikes" />
+    </div>
+</div>
+
+<input type="button" name="name" value="Insert" @onclick="Insert" />
+
+@code {
+    private Article _articleToAdd = new Article();
+    private void Insert()
+    {
+        new DataBaseCRUD().Insert<Article>(_articleToAdd);
+    }
+
+}

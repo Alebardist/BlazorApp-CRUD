@@ -1,0 +1,27 @@
+﻿@page "/Delete"
+@using ServerDataBase;
+
+<h3>Delete</h3>
+<div>
+    <div>
+        <div>
+            <span>Article name</span>
+        </div>
+        <div>
+            <input type="text" name="Name" @bind-value="_articleName" />
+        </div>
+        <div>
+            <input type="button" name="Name" value="Delete" @onclick="DeleteRecord" />
+        </div>
+    </div>
+
+</div>
+
+
+@code {
+    private string _articleName = "";
+    private void DeleteRecord()
+    {
+        new DataBaseCRUD().Delete<Article>(_articleName);
+    }
+}
